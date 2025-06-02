@@ -44,6 +44,14 @@ const Login = () => {
     }
   };
 
+  const handleGuestLogin = async () => {
+    setLoading(true);
+    const guestEmail = `guest_${Date.now()}@pinterest.com`;
+    const guestUsername = `Guest${Date.now()}`;
+    const success = await signup(guestUsername, guestEmail, 'guest123');
+    setLoading(false);
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -66,6 +74,25 @@ const Login = () => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          {/* Guest Login Button */}
+          <div className="mb-6">
+            <button
+              onClick={handleGuestLogin}
+              disabled={loading}
+              className="w-full flex justify-center py-3 px-4 border-2 border-gray-300 rounded-full shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Continue as Guest
+            </button>
+            <div className="mt-4 relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300" />
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-gray-500">Or</span>
+              </div>
+            </div>
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-6">
             {!isLogin && (
               <div>
