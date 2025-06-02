@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Home from '../components/Home';
 import Profile from '../components/Profile';
@@ -43,9 +43,7 @@ const Index = () => {
   return (
     <AuthProvider>
       <PinProvider>
-        <Router>
-          <AppContent />
-        </Router>
+        <AppContent />
       </PinProvider>
     </AuthProvider>
   );
